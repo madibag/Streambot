@@ -98,7 +98,7 @@ async def callbk(c,m):
 """
 
 
-@bot.on_callback_query(filters.regex('Close')& filters.private)
+@bot.on_callback_query(filters.regex('Close'))
 async def close(c,m):
     chat_id = m.from_user.id
     await c.delete_messages(chat_id=chat_id,message_ids=m.message.message_id)
@@ -113,7 +113,7 @@ async def yes_or_no(c,m):
         pass
 
 
-@bot.on_callback_query(filters.regex('help_in_need')& filters.private)
+@bot.on_callback_query(filters.regex('help_in_need'))
 async def help(c,m):
 
 
