@@ -35,22 +35,25 @@ async def check_if_active():
         peer = await bot.resolve_peer(Config.CHAT)
 
         pu = GetFullChannel(channel=peer)
-        print(pu)
+        #print(pu)
         call = await bot.send(data=pu)
+
+        #print(call)
 
         if call.full_chat.call:
             
-            print("###############",call)
-
             return True , True
+        else:
+            return False, False 
+
     except Exception as e:
         print(e,"here")
         return False , False
 
 async def create_call():
     a = await plyer.resolve_peer(Config.CHAT)
-    print(a)
     try:
+        print("create Call Initiated")
         crete = await plyer.send(CreateGroupCall(
                         peer=(await plyer.resolve_peer(Config.CHAT)),
                         random_id=random.randint(10000, 999999999),
@@ -65,7 +68,7 @@ async def create_call():
 
 async def join_call(link,width,height,referer='https://google.com',user_agent=Browsers().chrome_windows):
     try:
-        
+        print("Join Call Initiated")
         if width and height:
             cwidth,cheight = resize_ratio(width,height,100)
             #print(user_agent)
@@ -95,7 +98,7 @@ async def join_call(link,width,height,referer='https://google.com',user_agent=Br
 async def chang_stream(link,width,height,referer='',user_agent=Browsers().chrome_windows):
 
     if width and height:
-            
+            print("change_stream Call Initiated")
             cwidth,cheight = resize_ratio(width,height,100)
             await app.change_stream(
                             int(Config.CHAT),
@@ -114,7 +117,7 @@ async def chang_stream(link,width,height,referer='',user_agent=Browsers().chrome
                                     'Referer':referer,
                                     },
                                 ),
-                            stream_type=StreamType().pulse_stream,
+                            
                         )
 
 
