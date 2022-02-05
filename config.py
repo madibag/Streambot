@@ -29,5 +29,7 @@ class Config(object):
 
 	YES_NO = [[InlineKeyboardButton(text="✅ YES",callback_data="__YES__"),InlineKeyboardButton(text="✅ NO",callback_data="__NO__")]]
 
-
+	CALL_STATUS=False
+	CALL_ACTIVE = False
+	CURRENT_CALL=None
 
