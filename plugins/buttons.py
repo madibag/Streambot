@@ -38,21 +38,27 @@ from bot import bot
 async def stream(c,m):
     if " " in m.text:
         spl = m.text.split(' ',2)
-        link = spl[1]
-        option = spl[2]
+        try:
+            link = spl[1]
+            option = spl[2]
+        except:
+            link = spl[1]
+            option = None
 
         chat_id = m.chat.id
 
-        referer = ''
-        user_agent = ''
+        referer = 'Noref'
+        user_agent = 'NoU-agnt'
 
         print(option)
-        if option.startswith('user_agent - '):
+        if option == None:
+            pass
+        elif option.startswith('user_agent - '):
             user_agent = option.split(' - ',1)[1]
         elif option.startswith('referer - '):
             referer =  option.split(' - ',1)[1]
-        else:
-            return
+        
+
 
         print(user_agent,referer)
         
@@ -61,6 +67,8 @@ async def stream(c,m):
         try:
             width,height = await get_width_height(link,user_agent,referer)
             print(width,height)
+            if not width:
+                return
             await c.send_message(text="Started streaming",chat_id=chat_id,reply_to_message_id=m.message_id)
             if width and height:
                 active,playing = await check_if_active()
@@ -81,6 +89,7 @@ async def stream(c,m):
                 
         except Exception as e:
             print(e)
+
 
         
 
@@ -117,26 +126,16 @@ async def yes_or_no(c,m):
 async def help(c,m):
 
 
-    print(m)
+    #print(m)
     chat_id = m.from_user.id
 
     await c.send_message(
         chat_id=chat_id,
         text=Config.HELP,
-        reply_markup=InlineKeyboardMarkup(Config.HELP_BUTTON))
+        reply_markup=InlineKeyboardMarkup(Config.HELP_BUTTON)
+        )
 
     
-
-    '''pr_msg = await c.get_messages(chat_id=chat_id,message_ids=int(m.data.split(' ')[0])) 
-
-    link = pr_msg.text.split(' ',1)[1]
-
-    option = m.data.split(' ')[1]
-
-    await c.send_message(chat_id=chat_id,
-        text=f'{lnk}-{option}',
-        reply_markup=ForceReply(),
-        reply_to_message_id=int(m.data.split(' ')[0]))'''
 
 @bot.on_message(filters.command("start")& filters.private)
 async def start(c,m):
