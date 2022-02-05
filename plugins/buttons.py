@@ -94,19 +94,6 @@ async def stream(c,m):
         
 
 
-"""
-@bot.on_message(filters.text & filters.private & filters.reply & ~filters.command)
-async def callbk(c,m):
-    txt = m.text
-    link = txt.split('-',1)[0]
-    option = txt.split('-',1)[1]
-    print(txt)
-    if txt == "Referer" or txt == "User-Agent":
-        #c.send_message()
-        pass
-"""
-
-
 @bot.on_callback_query(filters.regex('Close'))
 async def close(c,m):
     chat_id = m.from_user.id
