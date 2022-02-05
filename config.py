@@ -25,7 +25,7 @@ class Config(object):
 		[InlineKeyboardButton(text="🆘 Help",callback_data="help_in_need"),InlineKeyboardButton(text="🗑 Close",callback_data="Close")]]
 
 	HELP = "Just Send the stream link after /stream command and follow along\n/stream [link]"
-	HELP_BUTTON = [InlineKeyboardButton(text="🗑 Close",callback_data="Close")]
+	HELP_BUTTON = [[InlineKeyboardButton(text="🗑 Close",callback_data="Close")]]
 
 	YES_NO = [[InlineKeyboardButton(text="✅ YES",callback_data="__YES__"),InlineKeyboardButton(text="✅ NO",callback_data="__NO__")]]
 
