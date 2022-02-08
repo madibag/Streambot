@@ -68,6 +68,7 @@ async def stream(c,m):
             width,height = await get_width_height(link,user_agent,referer)
             print(width,height)
             if not width:
+                await c.send_message(text="NO SOURCE FOUND",chat_id=chat_id,reply_to_message_id=m.message_id)
                 return
             await c.send_message(text="Started streaming",chat_id=chat_id,reply_to_message_id=m.message_id)
             if width and height:
