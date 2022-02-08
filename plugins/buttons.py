@@ -70,7 +70,7 @@ async def stream(c,m):
             if not width:
                 await c.send_message(text="NO SOURCE FOUND",chat_id=chat_id,reply_to_message_id=m.message_id)
                 return
-            await c.send_message(text="Started streaming",chat_id=chat_id,reply_to_message_id=m.message_id)
+            await c.send_message(text=f"Started streaming [Link]({link})",chat_id=chat_id,reply_to_message_id=m.message_id)
             if width and height:
                 active,playing = await check_if_active()
                 print(active,playing)
