@@ -39,10 +39,10 @@ async def stream(c,m):
     if " " in m.text:
         spl = m.text.split(' ',2)
         try:
-            link = '\'{}\''.format(spl[1])
+            link = spl[1]
             option = spl[2]
         except:
-            link = '\'{}\''.format(spl[1])
+            link = spl[1]
             option = None
 
         chat_id = m.chat.id
